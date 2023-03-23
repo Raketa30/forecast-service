@@ -22,7 +22,7 @@ class LastSevenDayAverageAlgorithmTest {
     @Test
     void shouldReturnTenWhenUnsortedDataComing() {
         double next = algorithm.calculateNextPrice(List.of(
-                new CurrencyData(LocalDate.of(2023, 1, 9), 300.0, Currency.EUR),
+                new CurrencyData(null, 300.0, Currency.EUR),
                 new CurrencyData(LocalDate.of(2023, 1, 1), 10.0, Currency.EUR),
                 new CurrencyData(LocalDate.of(2023, 1, 2), 10.0, Currency.EUR),
                 new CurrencyData(LocalDate.of(2023, 1, 3), 10.0, Currency.EUR),

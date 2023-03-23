@@ -11,9 +11,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Comparator.comparing;
-import static java.util.Comparator.reverseOrder;
-
 public class CurrencyRateCalculatorService {
 
     private CalculationAlgorithm algorithm;
@@ -25,8 +22,8 @@ public class CurrencyRateCalculatorService {
     public List<CurrencyRate> calculate(List<CurrencyData> currencyData, Period period, Currency currency) {
         var currencyRates = new ArrayList<CurrencyRate>();
         var currencyDataCopy = new ArrayList<>(currencyData);
-        for (int i = 0; i < period.getDays(); i++) {
-            var nextDayData = findNextDayCurrencyData(currency, currencyDataCopy, i);
+        for (int day = 0; day < period.getDays(); day++) {
+            var nextDayData = findNextDayCurrencyData(currency, currencyDataCopy, day);
             currencyDataCopy.add(nextDayData);
             currencyRates.add(CurrencyDataToRateMapper.mapToRate(nextDayData));
         }
@@ -38,7 +35,6 @@ public class CurrencyRateCalculatorService {
     }
 
     private CurrencyData findNextDayCurrencyData(Currency currency, List<CurrencyData> currencyData, int days) {
-        currencyData.sort(comparing(CurrencyData::date, reverseOrder()));
         var nextDate = LocalDate.now().plusDays(days);
         var nextPrice = algorithm.calculateNextPrice(currencyData);
         return new CurrencyData(nextDate, nextPrice, currency);

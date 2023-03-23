@@ -35,7 +35,8 @@ public class CsvDataLoader {
 
     private static List<String> read(String path) {
         try (BufferedReader reader = new BufferedReader(getInputStreamReader(path))) {
-            return reader.lines().skip(1).toList();
+            final int headerLine = 1;
+            return reader.lines().skip(headerLine).toList();
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }

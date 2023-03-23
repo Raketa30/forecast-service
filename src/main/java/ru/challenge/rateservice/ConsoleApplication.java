@@ -14,7 +14,7 @@ import static ru.challenge.rateservice.service.utils.ConsolePrintUtils.printHelp
 public class ConsoleApplication {
 
     private static final String WELCOME_MESSAGE = "Добрый день! Рады приветствовать в нашем сервисе прогноза валют!";
-    private static final String HELP_MESSAGE = "Поддерживаемые команды: rate [%s] [%s]";
+    private static final String HELP_MESSAGE = "Поддерживаемые команды: rate [%s] [%s]\nДля помощи используйте команду: help\nДля выхода введите: exit\n";
     private static final String ENTER_COMMAND_MESSAGE = "Введите команду: ";
     private static final String RETRY_REQUEST = "Неверная команда, повторите ввод";
     private static final String COMMAND_EXIT = "EXIT";
@@ -44,7 +44,7 @@ public class ConsoleApplication {
                 }
                 if (consoleInput.startsWith(COMMAND_HELP)) {
                     printHelp(HELP_MESSAGE);
-                    return;
+                    continue;
                 }
                 process(consoleInput);
             }
