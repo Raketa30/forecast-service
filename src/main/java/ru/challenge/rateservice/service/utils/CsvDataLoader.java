@@ -25,7 +25,7 @@ public class CsvDataLoader {
     private CsvDataLoader() {
     }
 
-    public static Map<Currency, List<CurrencyData>> getApplicationDataMap() {
+    public static Map<Currency, List<CurrencyData>> loadCurrencyData() {
         return paths.stream()
                 .map(CsvDataLoader::read)
                 .flatMap(List::stream)

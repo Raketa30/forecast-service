@@ -43,7 +43,7 @@ public class ConsoleApplication {
                     return;
                 }
                 if (consoleInput.startsWith(COMMAND_HELP)) {
-                    printHelp(HELP_MESSAGE);
+                    printHelp(String.format(HELP_MESSAGE, Currency.toInlineValues(), Period.toInlineValues()));
                     continue;
                 }
                 process(consoleInput);
