@@ -18,11 +18,11 @@ public class ConsolePrintUtils {
 
     private static final DateTimeFormatter dateFormatter = ofPattern("eee dd.MM.yyyy", new Locale("ru"));
 
-    public static void print(String text) {
+    public static void printBlue(String text) {
         System.out.println(ANSI_BLUE + text + ANSI_RESET);
     }
 
-    public static void printHelp(String text) {
+    public static void printPurple(String text) {
         System.out.println(ANSI_PURPLE + text + ANSI_RESET);
     }
 

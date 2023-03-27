@@ -4,12 +4,12 @@ import ru.challenge.forecastservice.domain.enums.Currency;
 import ru.challenge.forecastservice.domain.enums.Period;
 import ru.challenge.forecastservice.service.CommandExecutorService;
 import ru.challenge.forecastservice.service.CommandParserService;
+import ru.challenge.forecastservice.service.utils.ConsolePrintUtils;
 import ru.challenge.forecastservice.validator.impl.ConsoleInputValidator;
 
 import java.util.Scanner;
 
-import static ru.challenge.forecastservice.service.utils.ConsolePrintUtils.print;
-import static ru.challenge.forecastservice.service.utils.ConsolePrintUtils.printHelp;
+import static ru.challenge.forecastservice.service.utils.ConsolePrintUtils.printPurple;
 
 public class ConsoleApplication {
 
@@ -34,16 +34,16 @@ public class ConsoleApplication {
 
     public void start() {
         try (var scanner = new Scanner(System.in)) {
-            print(WELCOME_MESSAGE);
-            printHelp(String.format(HELP_MESSAGE, Currency.toInlineValues(), Period.toInlineValues()));
+            ConsolePrintUtils.printBlue(WELCOME_MESSAGE);
+            printPurple(String.format(HELP_MESSAGE, Currency.toInlineValues(), Period.toInlineValues()));
             while (true) {
-                print(ENTER_COMMAND_MESSAGE);
+                ConsolePrintUtils.printBlue(ENTER_COMMAND_MESSAGE);
                 var consoleInput = scanner.nextLine().toUpperCase().trim();
                 if (consoleInput.startsWith(COMMAND_EXIT)) {
                     return;
                 }
                 if (consoleInput.startsWith(COMMAND_HELP)) {
-                    printHelp(String.format(HELP_MESSAGE, Currency.toInlineValues(), Period.toInlineValues()));
+                    printPurple(String.format(HELP_MESSAGE, Currency.toInlineValues(), Period.toInlineValues()));
                     continue;
                 }
                 process(consoleInput);
@@ -53,14 +53,14 @@ public class ConsoleApplication {
 
     private void process(String consoleInput) {
         if (!validator.isValid(consoleInput)) {
-            print(RETRY_REQUEST);
+            ConsolePrintUtils.printBlue(RETRY_REQUEST);
             return;
         }
         try {
             var command = parserService.parse(consoleInput);
-            print(executorService.execute(command));
+            ConsolePrintUtils.print(executorService.execute(command));
         } catch (RuntimeException e) {
-            print(RETRY_REQUEST);
+            ConsolePrintUtils.printBlue(RETRY_REQUEST);
         }
     }
 }
