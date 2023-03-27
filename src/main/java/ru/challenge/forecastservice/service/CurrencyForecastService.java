@@ -20,14 +20,14 @@ public class CurrencyForecastService {
     }
 
     public List<ForecastData> calculate(List<CurrencyData> currencyData, Period period, Currency currency) {
-        var currencyRates = new ArrayList<ForecastData>();
+        var forecastData = new ArrayList<ForecastData>();
         var currencyDataCopy = new ArrayList<>(currencyData);
         for (int day = 0; day < period.getDays(); day++) {
             var nextDayData = findNextDayCurrencyData(currency, currencyDataCopy, day);
             currencyDataCopy.add(nextDayData);
-            currencyRates.add(CurrencyDataToRateMapper.mapToRate(nextDayData));
+            forecastData.add(CurrencyDataToRateMapper.mapToRate(nextDayData));
         }
-        return currencyRates;
+        return forecastData;
     }
 
     public void setAlgorithm(ForecastAlgorithm algorithm) {
