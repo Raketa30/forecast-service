@@ -19,7 +19,7 @@ public class CurrencyForecastService {
         this.algorithm = algorithm;
     }
 
-    public List<ForecastData> calculate(List<CurrencyData> currencyData, Period period, Currency currency) {
+    public List<ForecastData> forecast(List<CurrencyData> currencyData, Period period, Currency currency) {
         var forecastData = new ArrayList<ForecastData>();
         var currencyDataCopy = new ArrayList<>(currencyData);
         for (int day = 0; day < period.getDays(); day++) {

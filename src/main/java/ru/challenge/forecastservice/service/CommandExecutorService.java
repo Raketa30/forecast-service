@@ -20,7 +20,7 @@ public class CommandExecutorService {
     public List<ForecastData> execute(Command command) {
         setupAlgorithm(command.algorithmType());
         var currencyData = dataService.findByCurrency(command.currency());
-        return calculatorService.calculate(currencyData, command.period(), command.currency());
+        return calculatorService.forecast(currencyData, command.period(), command.currency());
     }
 
     private void setupAlgorithm(AlgorithmType type) {
